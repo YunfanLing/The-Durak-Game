@@ -1,5 +1,10 @@
 #include <iostream>
+using namespace std;
 
-int main() {
-  std::cout << "Hello World!\n";
+
+int main() 
+{
+  int b = 19;
+  cout << "Hello World!\n";
+  return 0;
 }
