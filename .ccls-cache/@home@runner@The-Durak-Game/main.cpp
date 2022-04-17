@@ -1,11 +1,15 @@
 #include <iostream>
+#include <map>
+#include <string>
+#include "cards.h"
 using namespace std;
-
 
 int main() 
 {
-  int b = 19;
-  int a = 10;  
-  cout << "Hello World!\n";
-  return 0;
+  Cards cards;
+  cards.setCardsSuit();
+  cards.setCardsValue();
+  cards.setCards();
+  cards.output();
+  
 }
