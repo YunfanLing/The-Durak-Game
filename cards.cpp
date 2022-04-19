@@ -6,15 +6,15 @@ using namespace std;
 
 void Cards::setCardsValue()
 {
-  cardsValue.push_back("6");
-  cardsValue.push_back("7");
-  cardsValue.push_back("8");
-  cardsValue.push_back("9");
-  cardsValue.push_back("10");
-  cardsValue.push_back("J");
-  cardsValue.push_back("Q");
-  cardsValue.push_back("K");
-  cardsValue.push_back("A");
+  cardsName.push_back("6");
+  cardsName.push_back("7");
+  cardsName.push_back("8");
+  cardsName.push_back("9");
+  cardsName.push_back("10");
+  cardsName.push_back("J");
+  cardsName.push_back("Q");
+  cardsName.push_back("K");
+  cardsName.push_back("A");
 
 }
 
@@ -33,10 +33,7 @@ void Cards::setCards()
     for(int j=0;j<9;j++)
     {
       int value=j+6;
-      string cardName=cardsSuit[i]+" "+cardsValue[j];
-      mp.insert({cardName,value});
-      cards.push_back(mp);
-      mp.clear();
+      cards.emplace_back(cardsSuit[i],cardsName[j],value);      
     }
   }
 }
@@ -45,10 +42,9 @@ void Cards::output()
 {
   cout<<"show all the cards\n";
   cout<<cards.size()<<endl;
-  vector<multimap<string,int>>::iterator it;
-  for(int i=0;i<cards.size();i++)
+  for (const auto& i : cards) 
   {
-    cout << cards[i]<<endl;
+  cout << get<0>(i) << " " << get<1>(i) << ", " << get<2>(i) << endl;
   }
 
 }

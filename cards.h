@@ -11,8 +11,7 @@ class Cards
   void setCards();
   void output();
   private:
-  vector<string>cardsValue;
+  vector<string>cardsName;
   vector<string>cardsSuit;
-  multimap<string,int> mp;
-  vector<multimap<string,int>>cards;
+  vector<tuple<string,string,int>>cards;
 };
