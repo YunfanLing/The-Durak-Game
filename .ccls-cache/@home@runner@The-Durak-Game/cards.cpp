@@ -2,6 +2,7 @@
 #include"cards.h"
 #include <string>
 using namespace std;
+#include<vector>
 
 void Cards::setCardsValue()
 {
@@ -29,11 +30,13 @@ void Cards::setCards()
 {
   for(int i=0;i<4;i++)
   {
-    string suit=cardsSuit[i];
     for(int j=0;j<9;j++)
     {
-      string value=cardsValue[j];
-      cards.insert({suit,value});
+      int value=j+6;
+      string cardName=cardsSuit[i]+" "+cardsValue[j];
+      mp.insert({cardName,value});
+      cards.push_back(mp);
+      mp.clear();
     }
   }
 }
@@ -41,6 +44,11 @@ void Cards::setCards()
 void Cards::output()
 {
   cout<<"show all the cards\n";
-  for(auto ptr=cards.begin();ptr!=cards.end();ptr++)
-    cout<<ptr->first<<" "<<ptr->second<<endl;
+  cout<<cards.size()<<endl;
+  vector<multimap<string,int>>::iterator it;
+  for(int i=0;i<cards.size();i++)
+  {
+    cout << cards[i]<<endl;
+  }
+
 }

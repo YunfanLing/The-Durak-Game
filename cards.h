@@ -13,5 +13,6 @@ class Cards
   private:
   vector<string>cardsValue;
   vector<string>cardsSuit;
-  multimap<string,string>cards;
+  multimap<string,int> mp;
+  vector<multimap<string,int>>cards;
 };
