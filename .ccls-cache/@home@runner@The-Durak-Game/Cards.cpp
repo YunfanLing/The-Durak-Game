@@ -1,5 +1,5 @@
 #include <iostream>
-#include"cards.h"
+#include"Cards.h"
 #include <string>
 using namespace std;
 #include<vector>

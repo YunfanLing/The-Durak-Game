@@ -1,7 +1,7 @@
 #include <iostream>
 #include <map>
 #include <string>
-#include "cards.h"
+#include "Cards.h"
 #include <algorithm>
 #include <random>
 using namespace std;
