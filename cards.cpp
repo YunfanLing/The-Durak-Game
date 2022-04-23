@@ -33,7 +33,7 @@ void Cards::setCards()
     for(int j=0;j<9;j++)
     {
       int value=j+6;
-      cards.emplace_back(cardsSuit[i],cardsName[j],value);      
+      mv.emplace_back(cardsSuit[i],cardsName[j],value);      
     }
   }
 }
@@ -41,8 +41,8 @@ void Cards::setCards()
 void Cards::output()
 {
   cout<<"show all the cards\n";
-  cout<<cards.size()<<endl;
-  for (const auto& i : cards) 
+  cout<<mv.size()<<endl;
+  for (const auto& i : mv) 
   {
   cout << get<0>(i) << " " << get<1>(i) << ", " << get<2>(i) << endl;
   }

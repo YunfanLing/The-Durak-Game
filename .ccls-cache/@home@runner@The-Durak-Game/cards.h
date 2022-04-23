@@ -3,15 +3,14 @@
 #include<vector>
 using namespace std;
 
-class Cards
+struct Cards
 {
   public:
   void setCardsValue();
   void setCardsSuit();
   void setCards();
   void output();
-  private:
   vector<string>cardsName;
   vector<string>cardsSuit;
-  vector<tuple<string,string,int>>cards;
+  vector<tuple<string,string,int>>mv;
 };

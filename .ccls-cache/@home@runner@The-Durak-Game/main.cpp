@@ -2,6 +2,8 @@
 #include <map>
 #include <string>
 #include "cards.h"
+#include <algorithm>
+#include <random>
 using namespace std;
 
 int main() 
@@ -11,5 +13,8 @@ int main()
   cards.setCardsValue();
   cards.setCards();
   cards.output();
-  
+  srand(unsigned(time(NULL)));
+  random_shuffle(cards.mv.begin(), cards.mv.end());
+  cards.output();
+  return 0;
 }
