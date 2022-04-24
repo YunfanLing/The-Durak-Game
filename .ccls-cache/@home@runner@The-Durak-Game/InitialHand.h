@@ -2,7 +2,6 @@
 #include<iostream>
 #include<vector>
 #include<tuple>
-#include"Cards.h"
 using namespace std;
 
 struct InitialHand
@@ -13,16 +12,9 @@ public:
   void output();
 };
 
-void InitialHand::deal()
-{
-  for(int i=0;i<6;i++)
-    mv.push_back(cards.mv[j]);  
-}
-
-
 void InitialHand::output()
 {
-  cout<<"show all the cards\n";
+  cout<<"Show hand cards\n";
   cout<<mv.size()<<endl;
   for (const auto& i : mv) 
   {
