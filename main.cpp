@@ -7,37 +7,33 @@
 #include <random>
 using namespace std;
 
-void playersNumber();
-void deal(InitialHand Player,Cards cards,int i);
+int playersNumber();
+InitialHand firstDeal(Cards cards,int i);
 
 int main() 
 {
   Cards AfterShuffle;
   AfterShuffle.shuffleCards();
-  playersNumber();
+  //AfterShuffle.output();
+  const int NUMBER_OF_PLAYERS=playersNumber();
 
-
-  InitialHand Player1,Player2,Player3,Player4,Player5,Player6;
-
+  //InitialHand Player1,Player2,Player3,Player4,Player5,Player6;
+  vector<InitialHand>Players;
+  for(int i=0;i<NUMBER_OF_PLAYERS;i++)
+  {
+    
+    cout<<"Hand of Player"<<i+1<<" after first deal\n";
+    Players.push_back(firstDeal(AfterShuffle,i+1));
+    Players[i].output();
+  }
   //Initial hand.
   //for(int i=0;i<Number.playersNumber;i++)
-  /*cout<<"Initial cards for Player1\n";
-  deal(Player1,cards,1);
-  cout<<"Initial cards for Player2\n";
-  deal(Player2,cards,2);
-  cout<<"Initial cards for Player3\n";
-  deal(Player3,cards,3);
-  cout<<"Initial cards for Player4\n";
-  deal(Player4,cards,4);
-  cout<<"Initial cards for Player5\n";
-  deal(Player5,cards,5);
-  cout<<"Initial cards for Player6\n";
-  deal(Player6,cards,6);*/
+
   
   return 0;
 }
 
-void playersNumber()
+int playersNumber()
 {
   int playersNumber;
   do 
@@ -47,11 +43,12 @@ void playersNumber()
     if(playersNumber<2||playersNumber>6)
       cout<<"Illegal number please enter again\n";
   }while(playersNumber<2||playersNumber>6);
-  const int NUMBER_OF_PLAYERS=playersNumber;
+  return playersNumber;
 }
-void deal(InitialHand Player,Cards cards,int i)
+InitialHand firstDeal(Cards Cards,int i)
 {
+  InitialHand Result;
   for(int j=0+6*(i-1);j<6+6*(i-1);j++)
-    Player.mv.push_back(cards.mv[j]);  
-  Player.output();
+    Result.mv.push_back(Cards.mv[j]);  
+  return Result;
 }

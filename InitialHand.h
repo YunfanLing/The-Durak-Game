@@ -8,7 +8,6 @@ struct InitialHand
 {
 public:
   vector<tuple<string,string,int>>mv;
-  void deal();
   void output();
 };
 
