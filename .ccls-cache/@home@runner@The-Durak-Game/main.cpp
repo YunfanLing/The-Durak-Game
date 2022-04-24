@@ -2,14 +2,12 @@
 #include <map>
 #include <string>
 #include "Cards.h"
-#include "Player.h"
 #include "InitialHand.h"
 #include <algorithm>
 #include <random>
 using namespace std;
 
 void playersNumber();
-void shuffleCards(Cards cards);
 void deal(InitialHand Player,Cards cards,int i);
 
 int main() 
