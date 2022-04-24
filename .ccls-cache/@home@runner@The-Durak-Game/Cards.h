@@ -30,7 +30,6 @@ void Cards::setCardsValue()
   cardsName.push_back("Q");
   cardsName.push_back("K");
   cardsName.push_back("A");
-
 }
 
 void Cards::setCardsSuit()

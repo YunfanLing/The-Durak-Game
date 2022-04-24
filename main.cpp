@@ -8,6 +8,7 @@
 #include <random>
 using namespace std;
 
+void playersNumber();
 void shuffleCards(Cards cards);
 void deal(InitialHand Player,Cards cards,int i);
 
@@ -15,10 +16,8 @@ int main()
 {
   Cards AfterShuffle;
   AfterShuffle.shuffleCards();
+  playersNumber();
 
-  Player Number;
-  Number.setPlayersNumber();
-  cout << Number.playersNumber<<endl;
 
   InitialHand Player1,Player2,Player3,Player4,Player5,Player6;
 
@@ -40,16 +39,18 @@ int main()
   return 0;
 }
 
-/*void shuffleCards(Cards cards)
+void playersNumber()
 {
-  cards.setCardsSuit();
-  cards.setCardsValue();
-  cards.setCards();
-  srand(unsigned(time(NULL)));
-  random_shuffle(cards.mv.begin(), cards.mv.end());
-  //cards.output(); //see the cards after shuffle
-}*/
-  
+  int playersNumber;
+  do 
+  {
+    cout<<"Please enter the number of the players(Between 2 to 6)\n";
+    cin>>playersNumber;    
+    if(playersNumber<2||playersNumber>6)
+      cout<<"Illegal number please enter again\n";
+  }while(playersNumber<2||playersNumber>6);
+  const int NUMBER_OF_PLAYERS=playersNumber;
+}
 void deal(InitialHand Player,Cards cards,int i)
 {
   for(int j=0+6*(i-1);j<6+6*(i-1);j++)
