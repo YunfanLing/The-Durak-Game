@@ -2,8 +2,8 @@
 #include<string>
 #include<vector>
 #include<tuple>
-#include <algorithm>
-#include <random>
+#include<algorithm>
+#include<random>
 using namespace std;
 
 struct Cards

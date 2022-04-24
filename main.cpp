@@ -1,15 +1,13 @@
 #include <iostream>
 #include <map>
 #include <string>
-#include "Cards.h"
-#include "InitialHand.h"
-#include <algorithm>
-#include <random>
+#include <tuple> 
+#include "Durak.h"
 using namespace std;
 
 int playersNumber();
 InitialHand firstDeal(Cards cards,int i);
-
+int cardCount=0;
 int main() 
 {
   Cards AfterShuffle;
@@ -26,6 +24,11 @@ int main()
     Players.push_back(firstDeal(AfterShuffle,i+1));
     Players[i].output();
   }
+  cout<<cardCount<<endl;
+  //Durak card;
+  Durak DurakCard;
+  DurakCard.setDuarkCard(AfterShuffle,cardCount);
+  cout<<get<0>(DurakCard.getDurakCard()[0])<<' '<<get<1>(DurakCard.getDurakCard()[0]);
   //Initial hand.
   //for(int i=0;i<Number.playersNumber;i++)
 
@@ -49,6 +52,9 @@ InitialHand firstDeal(Cards Cards,int i)
 {
   InitialHand Result;
   for(int j=0+6*(i-1);j<6+6*(i-1);j++)
-    Result.mv.push_back(Cards.mv[j]);  
+  {
+    Result.mv.push_back(Cards.mv[j]);
+    cardCount++;
+  }
   return Result;
 }
