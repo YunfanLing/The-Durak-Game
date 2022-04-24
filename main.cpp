@@ -13,8 +13,8 @@ void deal(InitialHand Player,Cards cards,int i);
 
 int main() 
 {
-  Cards cards;
-  shuffleCards(cards);
+  Cards AfterShuffle;
+  AfterShuffle.shuffleCards();
 
   Player Number;
   Number.setPlayersNumber();
@@ -24,7 +24,7 @@ int main()
 
   //Initial hand.
   //for(int i=0;i<Number.playersNumber;i++)
-  cout<<"Initial cards for Player1\n";
+  /*cout<<"Initial cards for Player1\n";
   deal(Player1,cards,1);
   cout<<"Initial cards for Player2\n";
   deal(Player2,cards,2);
@@ -35,12 +35,12 @@ int main()
   cout<<"Initial cards for Player5\n";
   deal(Player5,cards,5);
   cout<<"Initial cards for Player6\n";
-  deal(Player6,cards,6);
+  deal(Player6,cards,6);*/
   
   return 0;
 }
 
-void shuffleCards(Cards cards)
+/*void shuffleCards(Cards cards)
 {
   cards.setCardsSuit();
   cards.setCardsValue();
@@ -48,7 +48,7 @@ void shuffleCards(Cards cards)
   srand(unsigned(time(NULL)));
   random_shuffle(cards.mv.begin(), cards.mv.end());
   //cards.output(); //see the cards after shuffle
-}
+}*/
   
 void deal(InitialHand Player,Cards cards,int i)
 {

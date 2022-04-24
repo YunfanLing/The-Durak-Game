@@ -2,6 +2,8 @@
 #include<string>
 #include<vector>
 #include<tuple>
+#include <algorithm>
+#include <random>
 using namespace std;
 
 struct Cards
@@ -14,6 +16,7 @@ struct Cards
   vector<string>cardsName;
   vector<string>cardsSuit;
   vector<tuple<string,string,int>>mv;
+  void shuffleCards();
 };
 
 void Cards::setCardsValue()
@@ -59,4 +62,14 @@ void Cards::output()
   cout << get<0>(i) << " " << get<1>(i) << ", " << get<2>(i) << endl;
   }
 
+}
+
+void Cards::shuffleCards()
+{
+  setCardsSuit();
+  setCardsValue();
+  setCards();
+  srand(unsigned(time(NULL)));
+  random_shuffle(mv.begin(), mv.end());
+  output(); //see the cards after shuffle
 }
