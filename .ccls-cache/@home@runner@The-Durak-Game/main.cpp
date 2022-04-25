@@ -2,7 +2,7 @@
 #include <map>
 #include <string>
 #include <tuple> 
-#include "Durak.h"
+#include "Trump.h"
 using namespace std;
 
 int playersNumber();
@@ -15,24 +15,24 @@ int main()
   //AfterShuffle.output();
   const int NUMBER_OF_PLAYERS=playersNumber();
 
-  //InitialHand Player1,Player2,Player3,Player4,Player5,Player6;
+  //InitialHand Hand;
   vector<InitialHand>Players;
   for(int i=0;i<NUMBER_OF_PLAYERS;i++)
   {
-    
     cout<<"Hand of Player"<<i+1<<" after first deal\n";
     Players.push_back(firstDeal(AfterShuffle,i+1));
     Players[i].output();
   }
   cout<<cardCount<<endl;
-  //Durak card;
-  Durak DurakCard;
-  DurakCard.setDuarkCard(AfterShuffle,cardCount);
-  cout<<get<0>(DurakCard.getDurakCard()[0])<<' '<<get<1>(DurakCard.getDurakCard()[0]);
+  //Get Durak card;
+  Trump TrumpCard;
+  TrumpCard.setTrumpCard(AfterShuffle,cardCount);
+  cout<<"The trump card is\n";
+  cout<<get<0>(TrumpCard.getTrumpCard()[0])<<' '<<get<1>(TrumpCard.getTrumpCard()[0]);
   //Initial hand.
   //for(int i=0;i<Number.playersNumber;i++)
 
-  
+  //TrumpCard.firstTurn();
   return 0;
 }
 
@@ -48,6 +48,7 @@ int playersNumber()
   }while(playersNumber<2||playersNumber>6);
   return playersNumber;
 }
+
 InitialHand firstDeal(Cards Cards,int i)
 {
   InitialHand Result;
