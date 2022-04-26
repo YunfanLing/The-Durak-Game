@@ -2,11 +2,11 @@
 #include <map>
 #include <string>
 #include <tuple> 
-#include "Trump.h"
+#include "Initial/Trump.h"
 using namespace std;
 
 int playersNumber();
-InitialHand firstDeal(Cards cards,int i);
+Hand firstDeal(Cards cards,int i);
 int cardCount=0;
 
 int main() 
@@ -17,7 +17,7 @@ int main()
   const int NUMBER_OF_PLAYERS=playersNumber();
 
   //InitialHand Hand;
-  vector<InitialHand>Players;
+  vector<Hand>Players;
   for(int i=0;i<NUMBER_OF_PLAYERS;i++)
   {
     cout<<"Hand of Player"<<i+1<<" after first deal\n";
@@ -48,9 +48,9 @@ int playersNumber()
   return playersNumber;
 }
 
-InitialHand firstDeal(Cards Cards,int i)
+Hand firstDeal(Cards Cards,int i)
 {
-  InitialHand Result;
+  Hand Result;
   for(int j=0+6*(i-1);j<6+6*(i-1);j++)
   {
     Result.mv.push_back(Cards.mv[j]);

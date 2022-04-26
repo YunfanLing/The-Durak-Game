@@ -1,12 +1,12 @@
 #include"Cards.h"
-#include"InitialHand.h"
+#include"Hand.h"
 
 class Trump
 {
 public:
   void setTrumpCard(Cards AfterShuffle,int cardCount);
   vector<tuple<string,string,int>> getTrumpCard(){return TheTrumpCard;}
-  int whoAttackFirst(vector<InitialHand>Players);
+  int whoAttackFirst(vector<Hand>Players);
   int hasTrumpSuit(int i,vector<tuple<string,string,int>>mv,string trumpSuit);
 private:
   vector<tuple<string,string,int>>TheTrumpCard;
@@ -19,7 +19,7 @@ void Trump::setTrumpCard(Cards AfterShuffle,int cardCount)
 
 //Who first attack
 //bool hasTrumpSuit(int i,vector<tuple<string,string,int>>mv,string trumpSuit);
-int Trump::whoAttackFirst(vector<InitialHand>Players)
+int Trump::whoAttackFirst(vector<Hand>Players)
 {
   string trumpSuit=get<0>(TheTrumpCard[0]);
   int playerName;
