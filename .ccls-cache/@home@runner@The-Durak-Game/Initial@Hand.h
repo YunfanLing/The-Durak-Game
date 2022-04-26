@@ -34,7 +34,7 @@ string Hand::getSuit(int i)
 string Hand::getRank(int i)
 {
   string rank;
-  Rank=get<1>(mv[i]);
+  rank=get<1>(mv[i]);
   return rank;
 }
 
