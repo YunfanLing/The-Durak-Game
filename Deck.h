@@ -10,7 +10,6 @@ public:
   Hand getAttackCards(){return AttackCards;}
   Hand getDeckCards(){return DeckCards;}
   bool getBat(){return bat;}
-
   void setLegalAttack(int playerName,vector<Hand>Players,int attackNumber);
   bool getLegalAttack(){return legalAttack;}
 
@@ -25,6 +24,8 @@ public:
   bool getLegalDefend(){return legalDefend;}
   void setSuccessfulDefend(){if(take==0) successfulDefend=1;}
   bool getSuccessfulDefend(){return successfulDefend;}
+
+  void defend(int playerName,vector<Hand>Players);
 private:
   //Attack
   Hand AttackCards;
@@ -60,6 +61,8 @@ void Deck::setLegalAttack(int playerName,vector<Hand>Players,int attackNumber)
 {
   if(AttackCards.mv.size()==0)
     legalAttack=1;
+  else if(attackNumber>=Players[playerName-1].mv.size()||attackNumber<0)
+    legalAttack=0;
   else
   {
     legalAttack=0;
@@ -76,6 +79,8 @@ void Deck::attack(int playerName,vector<Hand>Players)
   int attackNumber;
   do
   {
+    cout<<"\nAttacker Player"<<playerName<<" attack\n";
+    Players[playerName-1].output();
     setBat();
     if(getBat()==0)
     {
@@ -99,10 +104,9 @@ void Deck::attack(int playerName,vector<Hand>Players)
         }  
       }
       while(getLegalAttack()==0);
-      
-      Players[playerName-1].output();
-      cout<<"\nAttack Cards\n";
-      AttackCards.output();
+
+      //cout<<"\nAttack Cards\n";
+      //AttackCards.output();
       cout<<"\nDeck Cards\n";
       DeckCards.output();
       cout<<"\nAttacker hand\n";
@@ -125,11 +129,56 @@ void Deck::setLegalDefend(int playerName,vector<Hand>Players,int defendNumber)
   else
   {
     legalDefend=0;
-    for(int i=0;i<DeckCards.mv.size();i++)
+    for(int i=0;i<AttackCards.mv.size();i++)
     {
-      if(AttackCards.getRank(i)==Players[playerName-1].getRank(defendNumber))
-        legalDefend=1;
+      if(playerName==Players.size())
+        playerName=0;
+      if(AttackCards.getSuit(i)==Players[playerName].getSuit(defendNumber))
+        if(AttackCards.getRank(i)<Players[playerName].getRank(defendNumber))
+          legalDefend=1;
     }    
   }
+}
+
+void Deck::defend(int playerName,vector<Hand>Players)
+{
+  int defendNumber;
+  do
+  {
+    setTake();
+    if(getTake()==0)
+    {
+      do
+      {
+        cout<<"Enter the number of card in hand to defend\n";
+        cin>>defendNumber;
+        setLegalDefend(playerName,Players,defendNumber);
+        if(getLegalDefend()==1)
+        {
+          setDefendCards(playerName,Players,defendNumber);
+          setDeckCards(); 
+          if(playerName==Players.size())
+            playerName=0;
+          Players[playerName].mv.erase(Players[playerName].mv.begin()+defendNumber);
+        }
+        else
+        {
+          cout<<"Illegal defend please enter again\n";
+          setTake();
+          if(getTake()==1)
+            break;
+        }  
+      }
+      while(getLegalDefend()==0);
+      
+      Players[playerName].output();
+      cout<<"\nDefend Cards\n";
+      DefendCards.output();
+      cout<<"\nDeck Cards\n";
+      DeckCards.output();
+      cout<<"\nDefender hand\n";
+      Players[playerName].output();
+    }
+  }while(getTake()==0);
 }
 

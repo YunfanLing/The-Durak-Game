@@ -35,6 +35,7 @@ int main()
   cout<<playerAttackFirst<<endl;
   Deck OnDeck;
   OnDeck.attack(playerAttackFirst,Players);
+  //OnDeck.defend(playerAttackFirst,Players);
   
   return 0;
 }
