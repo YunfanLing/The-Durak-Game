@@ -8,6 +8,7 @@ public:
   vector<tuple<string,string,int>> getTrumpCard(){return TheTrumpCard;}
   int whoAttackFirst(vector<Hand>Players);
   int hasTrumpSuit(int i,vector<tuple<string,string,int>>mv,string trumpSuit);
+  void output(){cout<<get<0>(TheTrumpCard[0])<<' '<<get<1>(TheTrumpCard[0])<<endl;}
 private:
   vector<tuple<string,string,int>>TheTrumpCard;
 };
@@ -32,7 +33,7 @@ int Trump::whoAttackFirst(vector<Hand>Players)
   bool noneTrump; 
   for(int i=0;i<playerHasTrumpSuit.size();i++)
   {
-    cout<<"Player"<<playerHasTrumpSuit[i]<<endl;
+    //cout<<"Player"<<playerHasTrumpSuit[i]<<endl;
     if(playerHasTrumpSuit[i]==1)
       noneTrump=0;
   }  
@@ -56,8 +57,10 @@ int Trump::whoAttackFirst(vector<Hand>Players)
             {
               lowestTrumpCard[0]=Players[i].mv[j];
               playerName=i+1;
+              
             }                     
       }
+    cout<<"Player"<<playerName<<" start the game\n";
   } 
   return playerName;
 }

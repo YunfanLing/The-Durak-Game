@@ -16,8 +16,8 @@ public:
 
 void Hand::output()
 {
-  cout<<"Show hand cards\n";
-  cout<<mv.size()<<endl;
+  cout<<"Show cards\n";
+  //cout<<mv.size()<<endl;//The number of cards of this hand
   for (const auto& i : mv) 
   {
   cout << get<0>(i) << " " << get<1>(i) << ", " << get<2>(i) << endl;
@@ -42,5 +42,5 @@ int Hand::getValue(int i)
 {
   int value;
   value=get<2>(mv[i]);
-  return value
+  return value;
 }

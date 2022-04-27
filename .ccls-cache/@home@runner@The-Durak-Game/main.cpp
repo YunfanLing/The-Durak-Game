@@ -1,8 +1,7 @@
 #include <iostream>
-#include <map>
 #include <string>
-#include <tuple> 
-#include "Initial/Trump.h"
+//#include "Initial/Trump.h"
+#include "Deck.h"
 using namespace std;
 
 int playersNumber();
@@ -28,10 +27,15 @@ int main()
   //Get Durak card;
   Trump TrumpCard;
   TrumpCard.setTrumpCard(AfterShuffle,cardCount);
-  cout<<"The trump card is\n";
-  cout<<get<0>(TrumpCard.getTrumpCard()[0])<<' '<<get<1>(TrumpCard.getTrumpCard()[0])<<endl;
-
-  cout<<TrumpCard.whoAttackFirst(Players)<<endl;
+  cout<<"\n\nThe trump card is\n";
+  
+  TrumpCard.output();
+  
+  int playerAttackFirst=TrumpCard.whoAttackFirst(Players);
+  cout<<playerAttackFirst<<endl;
+  Deck OnDeck;
+  OnDeck.attack(playerAttackFirst,Players);
+  
   return 0;
 }
 
