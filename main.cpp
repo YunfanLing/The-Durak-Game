@@ -3,7 +3,8 @@
 //#include "Initial/Trump.h"
 //#include "Deck.h"
 //#include "Attacker.h"
-#include"GameOver.h"
+//#include"GameOver.h"
+#include"Draw.h"
 using namespace std;
 
 int playersNumber();
@@ -17,6 +18,7 @@ int main()
   Deck OnDeck;
   Attacker Attack;
   GameOver GameOver;
+  Draw Draw;
   AfterShuffle.shuffleCards();
   //AfterShuffle.output();
   const int NUMBER_OF_PLAYERS=playersNumber();
@@ -45,6 +47,7 @@ int main()
   OnDeck.setSuccessfulDefend();
   OnDeck.takeDiscardsDeckCards(Players);
   Attack.setAttackerPlayer(OnDeck,playerAttack,Players);
+  Draw.draw(Players,cardCount,playerAttack,AfterShuffle);
   playerAttack=Attack.getAttackerPlayer();
   //OnDeck.getAttackCards().output();
   //OnDeck.getDeckCards().output();
@@ -61,6 +64,7 @@ int main()
     OnDeck.setSuccessfulDefend();
     OnDeck.takeDiscardsDeckCards(Players);
     Attack.setAttackerPlayer(OnDeck,playerAttack,Players);
+    Draw.draw(Players,cardCount,playerAttack,AfterShuffle);
     playerAttack=Attack.getAttackerPlayer();
     //OnDeck.getAttackCards().output();
     //OnDeck.getDeckCards().output();
