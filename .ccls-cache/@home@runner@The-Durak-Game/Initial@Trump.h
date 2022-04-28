@@ -5,6 +5,10 @@ class Trump
 {
 public:
   void setTrumpCard(Cards AfterShuffle,int cardCount);
+  string getSuit();
+  string getRank();
+  int getValue();
+
   vector<tuple<string,string,int>> getTrumpCard(){return TheTrumpCard;}
   int whoAttackFirst(vector<Hand>Players);
   int hasTrumpSuit(int i,vector<tuple<string,string,int>>mv,string trumpSuit);
@@ -72,4 +76,25 @@ int Trump::hasTrumpSuit(int i,vector<tuple<string,string,int>>mv,string trumpSui
     if(get<0>(mv[j])==trumpSuit)
       hasTrumpSuit=1;
   return hasTrumpSuit;
+}
+
+string Trump::getSuit()
+{
+  string suit;
+  suit=get<0>(TheTrumpCard[0]);
+  return suit;
+}
+
+string Trump::getRank()
+{
+  string rank;
+  rank=get<1>(TheTrumpCard[0]);
+  return rank;
+}
+
+int Trump::getValue()
+{
+  int value;
+  value=get<2>(TheTrumpCard[0]);
+  return value;
 }

@@ -32,10 +32,12 @@ int main()
   TrumpCard.output();
   
   int playerAttackFirst=TrumpCard.whoAttackFirst(Players);
-  cout<<playerAttackFirst<<endl;
+  //cout<<playerAttackFirst<<endl;
   Deck OnDeck;
   OnDeck.attack(playerAttackFirst,Players);
-  //OnDeck.defend(playerAttackFirst,Players);
+  //OnDeck.setDefendPlayer(playerAttackFirst,Players);
+  //cout<<OnDeck.getDefendPlayer();
+  OnDeck.defend(playerAttackFirst,Players,TrumpCard);
   
   return 0;
 }
