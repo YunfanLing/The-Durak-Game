@@ -1,7 +1,8 @@
 #include <iostream>
 #include <string>
 //#include "Initial/Trump.h"
-#include "Deck.h"
+//#include "Deck.h"
+#include "Attacker.h"
 using namespace std;
 
 int playersNumber();
@@ -11,10 +12,12 @@ int cardCount=0;
 int main() 
 {
   Cards AfterShuffle;
+  Trump TrumpCard;
+  Deck OnDeck;
+  Attacker Attack;
   AfterShuffle.shuffleCards();
   //AfterShuffle.output();
   const int NUMBER_OF_PLAYERS=playersNumber();
-
   //InitialHand Hand;
   vector<Hand>Players;
   for(int i=0;i<NUMBER_OF_PLAYERS;i++)
@@ -24,21 +27,31 @@ int main()
     Players[i].output();
   }
   cout<<cardCount<<endl;
+  
   //Get Durak card;
-  Trump TrumpCard;
   TrumpCard.setTrumpCard(AfterShuffle,cardCount);
   cout<<"\n\nThe trump card is\n";
-  
   TrumpCard.output();
-  
-  int playerAttackFirst=TrumpCard.whoAttackFirst(Players);
-  //cout<<playerAttackFirst<<endl;
-  Deck OnDeck;
-  OnDeck.attack(playerAttackFirst,Players);
-  //OnDeck.setDefendPlayer(playerAttackFirst,Players);
-  //cout<<OnDeck.getDefendPlayer();
-  OnDeck.defend(playerAttackFirst,Players,TrumpCard);
-  
+  //Who attack first
+  int playerAttack=TrumpCard.whoAttackFirst(Players);
+  OnDeck.attack(playerAttack,Players);
+  OnDeck.defend(playerAttack,Players,TrumpCard);
+  Attack.setAttackerPlayer(OnDeck,playerAttack,Players);
+  playerAttack=Attack.getAttackerPlayer();
+  OnDeck.takeDiscardsDeckCards(Players);
+  OnDeck.getAttackCards().output();
+  OnDeck.getDeckCards().output();
+  OnDeck.getDefendCards().output();
+  cout<<"\n\n------------------------------\n";
+  cout<<"             Next Round            \n";
+  OnDeck.attack(playerAttack,Players);
+  OnDeck.defend(playerAttack,Players,TrumpCard);
+  Attack.setAttackerPlayer(OnDeck,playerAttack,Players);
+  playerAttack=Attack.getAttackerPlayer();
+  OnDeck.takeDiscardsDeckCards(Players);
+  OnDeck.getAttackCards().output();
+  OnDeck.getDeckCards().output();
+  OnDeck.getDefendCards().output();
   return 0;
 }
 

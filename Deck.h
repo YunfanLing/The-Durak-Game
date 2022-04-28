@@ -13,7 +13,7 @@ public:
   void setLegalAttack(int playerName,vector<Hand>Players,int attackNumber);
   bool getLegalAttack(){return legalAttack;}
 
-  void attack(int playerName,vector<Hand>Players);
+  void attack(int playerName,vector<Hand>& Players);
 
   //Defend 
   void setDefendCards(vector<Hand>Players,int defendNumber);
@@ -25,11 +25,12 @@ public:
   void setSuccessfulDefend();
   bool getSuccessfulDefend(){return successfulDefend;}
 
-  void defend(int playerName,vector<Hand>Players,Trump TheTrumpCard);
+  void defend(int playerName,vector<Hand>& Players,Trump TheTrumpCard);
 
   void setDefendPlayer(int PlayerName,vector<Hand>Players);
   int getDefendPlayer(){return defendPlayer;}
-
+  
+  void takeDiscardsDeckCards(vector<Hand>&Players);
 
 private:
   //Attack
@@ -80,7 +81,7 @@ void Deck::setLegalAttack(int playerName,vector<Hand>Players,int attackNumber)
   }
 }
 
-void Deck::attack(int playerName,vector<Hand>Players)
+void Deck::attack(int playerName,vector<Hand>& Players)
 {
   int attackNumber;
   do
@@ -167,7 +168,7 @@ void Deck::setLegalDefend(int defendAttackNumber,vector<Hand>Players,int defendN
   }
 }
 
-void Deck::defend(int playerName,vector<Hand>Players,Trump TheTrumpCard)
+void Deck::defend(int playerName,vector<Hand>& Players,Trump TheTrumpCard)
 {
   int defendNumber;
   setDefendPlayer(playerName,Players);
@@ -219,5 +220,28 @@ void Deck::setSuccessfulDefend()
   {
     successfulDefend=1;
     cout<<"Player"<< getDefendPlayer()<<" successfully defend the attack\n";
+  }
+}
+
+void Deck::takeDiscardsDeckCards(vector<Hand>&Players)
+{
+  if(successfulDefend==0)
+  {
+    for(int i=0;i<AttackCards.mv.size();i++)
+      Players[getDefendPlayer()-1].mv.emplace_back(AttackCards.mv[i]);
+    for(int i=0;i<DefendCards.mv.size();i++)
+      Players[getDefendPlayer()-1].mv.emplace_back(DefendCards.mv[i]);
+    cout<<"Fail to defend "<<"Player"<<getDefendPlayer()<<" take all the cards on the deck\n";
+    Players[getDefendPlayer()-1].output();
+    DeckCards.mv.clear();
+    AttackCards.mv.clear();
+    DefendCards.mv.clear();
+  }
+  else
+  {
+    cout<<"Cards on the deck discard\n";
+    DeckCards.mv.clear();
+    AttackCards.mv.clear();
+    DefendCards.mv.clear();
   }
 }
