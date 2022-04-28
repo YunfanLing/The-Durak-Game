@@ -27,7 +27,7 @@ public:
 
   void defend(int playerName,vector<Hand>& Players,Trump TheTrumpCard);
 
-  void setDefendPlayer(int PlayerName,vector<Hand>Players);
+  void setDefendPlayer(int playerName,vector<Hand>Players);
   int getDefendPlayer(){return defendPlayer;}
   
   void takeDiscardsDeckCards(vector<Hand>&Players);
@@ -219,8 +219,9 @@ void Deck::setSuccessfulDefend()
   if(AttackCards.mv.size()==DefendCards.mv.size())
   {
     successfulDefend=1;
-    cout<<"Player"<< getDefendPlayer()<<" successfully defend the attack\n";
   }
+  else
+    successfulDefend=0;
 }
 
 void Deck::takeDiscardsDeckCards(vector<Hand>&Players)
@@ -239,6 +240,7 @@ void Deck::takeDiscardsDeckCards(vector<Hand>&Players)
   }
   else
   {
+    cout<<"Player"<< getDefendPlayer()<<" successfully defend the attack\n";
     cout<<"Cards on the deck discard\n";
     DeckCards.mv.clear();
     AttackCards.mv.clear();

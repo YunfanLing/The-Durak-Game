@@ -2,7 +2,8 @@
 #include <string>
 //#include "Initial/Trump.h"
 //#include "Deck.h"
-#include "Attacker.h"
+//#include "Attacker.h"
+#include"GameOver.h"
 using namespace std;
 
 int playersNumber();
@@ -15,6 +16,7 @@ int main()
   Trump TrumpCard;
   Deck OnDeck;
   Attacker Attack;
+  GameOver GameOver;
   AfterShuffle.shuffleCards();
   //AfterShuffle.output();
   const int NUMBER_OF_PLAYERS=playersNumber();
@@ -30,28 +32,41 @@ int main()
   
   //Get Durak card;
   TrumpCard.setTrumpCard(AfterShuffle,cardCount);
-  cout<<"\n\nThe trump card is\n";
+  cout<<"\n\n-------The trump card is---------\n";
   TrumpCard.output();
   //Who attack first
+  cout<<"\n\n--------------------------------\n";
+  cout<<"          First Round            \n";
   int playerAttack=TrumpCard.whoAttackFirst(Players);
   OnDeck.attack(playerAttack,Players);
+  GameOver.setGameOverAndDurak(Players);
   OnDeck.defend(playerAttack,Players,TrumpCard);
+  GameOver.setGameOverAndDurak(Players);
+  OnDeck.setSuccessfulDefend();
+  OnDeck.takeDiscardsDeckCards(Players);
   Attack.setAttackerPlayer(OnDeck,playerAttack,Players);
   playerAttack=Attack.getAttackerPlayer();
-  OnDeck.takeDiscardsDeckCards(Players);
-  OnDeck.getAttackCards().output();
-  OnDeck.getDeckCards().output();
-  OnDeck.getDefendCards().output();
-  cout<<"\n\n------------------------------\n";
-  cout<<"             Next Round            \n";
-  OnDeck.attack(playerAttack,Players);
-  OnDeck.defend(playerAttack,Players,TrumpCard);
-  Attack.setAttackerPlayer(OnDeck,playerAttack,Players);
-  playerAttack=Attack.getAttackerPlayer();
-  OnDeck.takeDiscardsDeckCards(Players);
-  OnDeck.getAttackCards().output();
-  OnDeck.getDeckCards().output();
-  OnDeck.getDefendCards().output();
+  //OnDeck.getAttackCards().output();
+  //OnDeck.getDeckCards().output();
+  //OnDeck.getDefendCards().output();
+  //while(gameEnd);
+  while(1)
+  {
+    cout<<"\n\n------------------------------\n";
+    cout<<"             Next Round            \n";
+    OnDeck.attack(playerAttack,Players);
+    GameOver.setGameOverAndDurak(Players);
+    OnDeck.defend(playerAttack,Players,TrumpCard);
+    GameOver.setGameOverAndDurak(Players);
+    OnDeck.setSuccessfulDefend();
+    OnDeck.takeDiscardsDeckCards(Players);
+    Attack.setAttackerPlayer(OnDeck,playerAttack,Players);
+    playerAttack=Attack.getAttackerPlayer();
+    //OnDeck.getAttackCards().output();
+    //OnDeck.getDeckCards().output();
+    //OnDeck.getDefendCards().output();
+  }
+  
   return 0;
 }
 

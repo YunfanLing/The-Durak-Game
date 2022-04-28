@@ -14,5 +14,15 @@ void Attacker::setAttackerPlayer(Deck OnDeck,int playerAttack,vector<Hand>Player
   if(OnDeck.getSuccessfulDefend())
     attackerPlayer=OnDeck.getDefendPlayer();
   else
-    attackerPlayer=(playerAttack+2)%(Players.size());
+  {
+    if(Players.size()!=2)
+      attackerPlayer=(playerAttack+2)%(Players.size());
+    else
+    {
+      if(OnDeck.getDefendPlayer()==2)
+        attackerPlayer=1;
+      else
+        attackerPlayer=2;
+    }
+  }  
 }
