@@ -39,9 +39,9 @@ int main()
   cout<<"          First Round            \n";
   int playerAttack=TrumpCard.whoAttackFirst(Players);
   OnDeck.attack(playerAttack,Players);
-  GameOver.setGameOverAndDurak(Players);
+  GameOver.judgeEnd(Players);
   OnDeck.defend(playerAttack,Players,TrumpCard);
-  GameOver.setGameOverAndDurak(Players);
+  GameOver.judgeEnd(Players);
   OnDeck.setSuccessfulDefend();
   OnDeck.takeDiscardsDeckCards(Players);
   Attack.setAttackerPlayer(OnDeck,playerAttack,Players);
@@ -55,9 +55,9 @@ int main()
     cout<<"\n\n------------------------------\n";
     cout<<"             Next Round            \n";
     OnDeck.attack(playerAttack,Players);
-    GameOver.setGameOverAndDurak(Players);
+    GameOver.judgeEnd(Players);
     OnDeck.defend(playerAttack,Players,TrumpCard);
-    GameOver.setGameOverAndDurak(Players);
+    GameOver.judgeEnd(Players);
     OnDeck.setSuccessfulDefend();
     OnDeck.takeDiscardsDeckCards(Players);
     Attack.setAttackerPlayer(OnDeck,playerAttack,Players);
