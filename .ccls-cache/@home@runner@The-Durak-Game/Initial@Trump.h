@@ -5,10 +5,10 @@ class Trump
 {
 public:
   void setTrumpCard(Cards AfterShuffle,int cardCount);
+
   string getSuit();
   string getRank();
   int getValue();
-
   vector<tuple<string,string,int>> getTrumpCard(){return TheTrumpCard;}
   int whoAttackFirst(vector<Hand>Players);
   int hasTrumpSuit(int i,vector<tuple<string,string,int>>mv,string trumpSuit);
