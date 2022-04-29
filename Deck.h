@@ -7,30 +7,27 @@ public:
   void setAttackCards(int playerName,vector<Hand>Players,int attackNumber);
   void setDeckCards();
   void setBat(){cout<<"Bat?\n";cin>>bat;}
+  void setLegalAttack(int playerName,vector<Hand>Players,int attackNumber);
   Hand getAttackCards(){return AttackCards;}
   Hand getDeckCards(){return DeckCards;}
   bool getBat(){return bat;}
-  void setLegalAttack(int playerName,vector<Hand>Players,int attackNumber);
   bool getLegalAttack(){return legalAttack;}
 
   void attack(int playerName,vector<Hand>& Players);
 
   //Defend 
   void setDefendCards(vector<Hand>Players,int defendNumber);
-  Hand getDefendCards(){return DefendCards;}
   void setTake(){cout<<"Take?\n";cin>>take;}
-  bool getTake(){return take;}
   void setLegalDefend(int defendAttackNumber,vector<Hand>Players,int defendNumber,Trump TheTrumpCard);
-  bool getLegalDefend(){return legalDefend;}
   void setSuccessfulDefend();
-  bool getSuccessfulDefend(){return successfulDefend;}
-
-  void defend(int playerName,vector<Hand>& Players,Trump TheTrumpCard);
-
   void setDefendPlayer(int playerName,vector<Hand>Players);
+  Hand getDefendCards(){return DefendCards;}
+  bool getTake(){return take;}
+  bool getLegalDefend(){return legalDefend;}
+  bool getSuccessfulDefend(){return successfulDefend;}
   int getDefendPlayer(){return defendPlayer;}
-  
   void takeDiscardsDeckCards(vector<Hand>&Players);
+  void defend(int playerName,vector<Hand>& Players,Trump TheTrumpCard);
 
 private:
   //Attack
@@ -247,3 +244,6 @@ void Deck::takeDiscardsDeckCards(vector<Hand>&Players)
     DefendCards.mv.clear();
   }
 }
+
+//////////////Continue Attack////////////
+//////////////Continue Defend////////////
