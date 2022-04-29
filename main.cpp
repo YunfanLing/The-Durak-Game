@@ -40,16 +40,25 @@ int main()
   cout<<"\n\n--------------------------------\n";
   cout<<"          First Round            \n";
   int playerAttack=TrumpCard.whoAttackFirst(Players);
-  OnDeck.attack(playerAttack,Players);
+  do 
+  {
+    OnDeck.attack(playerAttack,Players);
+    GameOver.judgeEnd(Players);
+    OnDeck.defend(playerAttack,Players,TrumpCard);
+    GameOver.judgeEnd(Players);
+    OnDeck.setSuccessfulDefend();
+  }while(OnDeck.getTake()==0);
+  /*OnDeck.attack(playerAttack,Players);
   GameOver.judgeEnd(Players);
   OnDeck.defend(playerAttack,Players,TrumpCard);
   GameOver.judgeEnd(Players);
-  OnDeck.setSuccessfulDefend();
+  OnDeck.setSuccessfulDefend();*/
   OnDeck.takeDiscardsDeckCards(Players);
   Draw.draw(Players,cardCount,playerAttack,AfterShuffle);
   Attack.setAttackerPlayer(OnDeck,playerAttack,Players);
   //Draw.draw(Players,cardCount,playerAttack,AfterShuffle);
   playerAttack=Attack.getAttackerPlayer();
+  cout<<"\nCards left "<<36-cardCount<<endl;
   //OnDeck.getAttackCards().output();
   //OnDeck.getDeckCards().output();
   //OnDeck.getDefendCards().output();
@@ -58,11 +67,20 @@ int main()
   {
     cout<<"\n\n------------------------------\n";
     cout<<"             Next Round            \n";
-    OnDeck.attack(playerAttack,Players);
+    do 
+    {
+      OnDeck.attack(playerAttack,Players);
+      GameOver.judgeEnd(Players);
+      OnDeck.defend(playerAttack,Players,TrumpCard);
+      GameOver.judgeEnd(Players);
+      OnDeck.setSuccessfulDefend();
+    }while(OnDeck.getTake()==0);
+    
+    /*OnDeck.attack(playerAttack,Players);
     GameOver.judgeEnd(Players);
     OnDeck.defend(playerAttack,Players,TrumpCard);
     GameOver.judgeEnd(Players);
-    OnDeck.setSuccessfulDefend();
+    OnDeck.setSuccessfulDefend();*/
     OnDeck.takeDiscardsDeckCards(Players);
     Draw.draw(Players,cardCount,playerAttack,AfterShuffle);
     Attack.setAttackerPlayer(OnDeck,playerAttack,Players);
@@ -71,6 +89,7 @@ int main()
     //OnDeck.getAttackCards().output();
     //OnDeck.getDeckCards().output();
     //OnDeck.getDefendCards().output();
+    cout<<"\nCards left "<<36-cardCount<<endl;
   }
   
   return 0;
