@@ -46,8 +46,9 @@ int main()
   GameOver.judgeEnd(Players);
   OnDeck.setSuccessfulDefend();
   OnDeck.takeDiscardsDeckCards(Players);
-  Attack.setAttackerPlayer(OnDeck,playerAttack,Players);
   Draw.draw(Players,cardCount,playerAttack,AfterShuffle);
+  Attack.setAttackerPlayer(OnDeck,playerAttack,Players);
+  //Draw.draw(Players,cardCount,playerAttack,AfterShuffle);
   playerAttack=Attack.getAttackerPlayer();
   //OnDeck.getAttackCards().output();
   //OnDeck.getDeckCards().output();
@@ -63,8 +64,9 @@ int main()
     GameOver.judgeEnd(Players);
     OnDeck.setSuccessfulDefend();
     OnDeck.takeDiscardsDeckCards(Players);
-    Attack.setAttackerPlayer(OnDeck,playerAttack,Players);
     Draw.draw(Players,cardCount,playerAttack,AfterShuffle);
+    Attack.setAttackerPlayer(OnDeck,playerAttack,Players);
+    //Draw.draw(Players,cardCount,playerAttack,AfterShuffle);
     playerAttack=Attack.getAttackerPlayer();
     //OnDeck.getAttackCards().output();
     //OnDeck.getDeckCards().output();

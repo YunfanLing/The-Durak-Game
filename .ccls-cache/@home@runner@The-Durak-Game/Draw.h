@@ -43,7 +43,7 @@ void Draw::setDrawHowManyCards(vector<Hand>Players)
 {
   for(int i=0;i<Players.size();i++)
   {
-    int m=6-Players[i].mv.size();
+    int m=(6-Players[i].mv.size())*drawOrNot[i];
     drawHowManyCards.push_back(m);
   }
 }
@@ -84,8 +84,10 @@ void Draw::draw(vector<Hand>&Players, int& cardCount,int playerAttack,Cards Afte
     if(playerAttack+i+1==Players.size())
     {
       otherPlayer=playerAttack+i+1;
-      for(int j=0;j<drawHowManyCards[otherPlayer-1]&&cardsEnd!=0;j++)
+      for(int j=0;j<drawHowManyCards[otherPlayer-1];j++)
       {
+        if(getCardsEnd()==1)
+          break;
         Players[otherPlayer-1].mv.emplace_back(AfterShuffle.mv[cardCount]);
         cardCount++;
         setCardsEnd(cardCount);
