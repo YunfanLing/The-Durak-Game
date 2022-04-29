@@ -29,12 +29,7 @@ public:
   void takeDiscardsDeckCards(vector<Hand>&Players);
   void defend(int playerName,vector<Hand>& Players,Trump TheTrumpCard);
 
-  //Continue Attack
-  void setContinueAttack();
-  bool getContinueAttack(){return continueAttack;}
-  //Continue Defend
-  void setContinueDefend();
-  bool getContinueDefend(){return continueDefend;}
+
 
 private:
   //Attack
@@ -48,10 +43,7 @@ private:
   bool take;
   bool legalDefend;
   bool successfulDefend;
-  //Continue Attack
-  bool continueAttack;
-  //Continue Defend
-  bool continueDefend;
+
 };
 
 void Deck::setAttackCards(int playerName,vector<Hand>Players,int attackNumber)
@@ -259,6 +251,3 @@ void Deck::takeDiscardsDeckCards(vector<Hand>&Players)
     DefendCards.mv.clear();
   }
 }
-
-//////////////Continue Attack////////////
-//////////////Continue Defend////////////
