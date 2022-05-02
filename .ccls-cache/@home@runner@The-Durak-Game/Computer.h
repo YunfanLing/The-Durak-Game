@@ -46,11 +46,14 @@ void Computer::setCardsCanAttack(vector<Hand>Players,int playerAttack,Deck OnDec
   {
     for(int i=0;i<cardsCanAttack.size();i++)
       cardsCanAttack[i]=1;
+  }
+  else
+  {
     for(int i=0;i<Players[playerAttack-1].mv.size();i++)
     {
       for(int j=0;j<OnDeck.getAttackCards().mv.size();j++)
       {
-        if(Players[playerAttack-1].getRank(i)==OnDeck.getDeckCards().getRank(j))
+        if(Players[playerAttack-1].getValue(i)==OnDeck.getDeckCards().getValue(j))
           cardsCanAttack[i]=1;
       }
     }
@@ -59,7 +62,7 @@ void Computer::setCardsCanAttack(vector<Hand>Players,int playerAttack,Deck OnDec
 
 void Computer::setBat()
 {
-  int sum;
+  int sum=0;
   for(int i=0;i<cardsCanAttack.size();i++)
     sum+=cardsCanAttack[i];
   if(sum==0)
@@ -95,23 +98,25 @@ void Computer::attack(vector<Hand>& Players,int playerAttack,Deck& OnDeck)
       break;
     }
     setAttackCard();
-    OnDeck.getAttackCards().mv.emplace_back(Players[playerAttack-1].mv[attackCard]);
-    OnDeck.getAttackCards().output();
+    OnDeck.setAttackCards(playerAttack,Players,attackCard);
+    //OnDeck.getAttackCards().mv.emplace_back(Players[playerAttack-1].mv[attackCard]);
+    //OnDeck.getAttackCards().output();
     Players[playerAttack-1].mv.erase(Players[playerAttack-1].mv.begin()+attackCard);
     OnDeck.setDeckCards();
-    Players[playerAttack-1].output();
-    OnDeck.getDeckCards().output();
+    //Players[playerAttack-1].output();
+    //OnDeck.getDeckCards().output();
   }while(bat==0);
   cout<<"\nDeck Cards\n";
-  OnDeck.getAttackCards().output();
+  OnDeck.getDeckCards().output();
   cout<<"\nAttacker hand\n";
-  Players[playerAttack-1].output();
+  OnDeck.getAttackCards().output();
 }
 
 //Computer Defend
 void Computer::setCardsCanDefend(int defendToWhichCards,vector<Hand>Players,int playerDefend,Deck OnDeck,Trump TrumpCard)
 {
   cardsCanDefend.clear();
+  cardsCanAttack.resize(Players[playerDefend-1].mv.size());
   if(OnDeck.getAttackCards().mv.size()==OnDeck.getDefendCards().mv.size())
   {
     for(int i=0;i<Players[playerDefend-1].mv.size();i++)
@@ -153,7 +158,7 @@ void Computer::setCardsCanDefend(int defendToWhichCards,vector<Hand>Players,int 
 
 void Computer::setTake()
 {
-  int sum;
+  int sum=0;
   for(int i=0;i<cardsCanDefend.size();i++)
     sum+=cardsCanAttack[i];
   if(sum==0)
@@ -189,7 +194,7 @@ void Computer::defend(int playerDefend,vector<Hand>& Players,Trump TheTrumpCard,
         if(take==1)
           break;
         setDefendCard();
-        OnDeck.getDefendCards().mv.emplace_back(Players[playerDefend-1].mv[defendCard]);
+        OnDeck.setDefendCards(Players,defendCard);
         Players[playerDefend-1].mv.erase(Players[playerDefend-1].mv.begin()+defendCard);
         OnDeck.setDeckCards();
       }

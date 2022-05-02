@@ -45,7 +45,7 @@ int Trump::whoAttackFirst(vector<Hand>Players)
   //If none of the player has trump suit then Player1 start the game
   if(noneTrump==1)
   {
-    playerName=1;
+    playerName=2;
     cout<<"Player"<<playerName<<" start the game\n";
   }
   else
