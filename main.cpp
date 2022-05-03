@@ -53,6 +53,7 @@ int main()
   if(Computer.getHaveComputer()==0)
   {
   //No computer player
+  int playerDefend=Defender.defenderPlayer(playerAttack);
   do 
   {
     OnDeck.attack(playerAttack,Players);
@@ -66,11 +67,12 @@ int main()
   OnDeck.defend(playerAttack,Players,TrumpCard);
   GameOver.judgeEnd(Players);
   OnDeck.setSuccessfulDefend();*/
-  OnDeck.takeDiscardsDeckCards(Players);
+  OnDeck.takeDiscardsDeckCards(Players,playerDefend);
   Draw.draw(Players,cardCount,playerAttack,AfterShuffle);
   Attack.setAttackerPlayer(OnDeck,playerAttack,Players);
   //Draw.draw(Players,cardCount,playerAttack,AfterShuffle);
   playerAttack=Attack.getAttackerPlayer();
+  playerDefend=Defender.defenderPlayer(playerAttack);
   cout<<"\nCards left "<<36-cardCount<<endl;
   //OnDeck.getAttackCards().output();
   //OnDeck.getDeckCards().output();
@@ -94,11 +96,12 @@ int main()
     OnDeck.defend(playerAttack,Players,TrumpCard);
     GameOver.judgeEnd(Players);
     OnDeck.setSuccessfulDefend();*/
-    OnDeck.takeDiscardsDeckCards(Players);
+    OnDeck.takeDiscardsDeckCards(Players,playerDefend);
     Draw.draw(Players,cardCount,playerAttack,AfterShuffle);
     Attack.setAttackerPlayer(OnDeck,playerAttack,Players);
     //Draw.draw(Players,cardCount,playerAttack,AfterShuffle);
     playerAttack=Attack.getAttackerPlayer();
+    playerDefend=Defender.defenderPlayer(playerAttack);
     //OnDeck.getAttackCards().output();
     //OnDeck.getDeckCards().output();
     //OnDeck.getDefendCards().output();
@@ -108,7 +111,6 @@ int main()
   else
   {
     int playerDefend=Defender.defenderPlayer(playerAttack);
-    
     do 
     {
       if(playerAttack==1)
@@ -136,13 +138,55 @@ int main()
         GameOver.judgeEnd(Players);
       }
       OnDeck.setSuccessfulDefend();
-    }while(Computer.getTake()==0);
-    OnDeck.takeDiscardsDeckCards(Players);
+    }while(Computer.getTake()!=1&&OnDeck.getTake()!=0);
+    OnDeck.takeDiscardsDeckCards(Players,playerDefend);
     Draw.draw(Players,cardCount,playerAttack,AfterShuffle);
     Attack.setAttackerPlayer(OnDeck,playerAttack,Players);
     playerAttack=Attack.getAttackerPlayer();
     playerDefend=Defender.defenderPlayer(playerAttack);
     cout<<"\nCards left "<<36-cardCount<<endl;
+    cout<<playerAttack<<endl;
+    cout<<playerDefend<<endl;
+
+    do 
+    {
+      cout<<"\n\n------------------------------\n";
+      cout<<"             Next Round            \n";
+      do 
+      {
+        if(playerAttack==1)
+        {
+          cout<<"==You attack computer==\n";
+          OnDeck.attack(playerAttack,Players);
+          GameOver.judgeEnd(Players);
+        }
+        else
+        {
+          cout<<"==Computer attack==\n";
+          Computer.attack(Players,playerAttack,OnDeck);
+          GameOver.judgeEnd(Players);
+        }
+        if(playerDefend==1)
+        {
+          cout<<"==You defend computer==\n";
+          OnDeck.defend(playerAttack,Players,TrumpCard);
+          GameOver.judgeEnd(Players);
+        }
+        else
+        {
+          cout<<"==Computer defend==\n";
+          Computer.defend(playerDefend,Players,TrumpCard,OnDeck);
+          GameOver.judgeEnd(Players);
+        }
+        OnDeck.setSuccessfulDefend();
+      }while(Computer.getTake()!=1&&OnDeck.getTake()!=0);
+      OnDeck.takeDiscardsDeckCards(Players,playerDefend);
+      Draw.draw(Players,cardCount,playerAttack,AfterShuffle);
+      Attack.setAttackerPlayer(OnDeck,playerAttack,Players);
+      playerAttack=Attack.getAttackerPlayer();
+      playerDefend=Defender.defenderPlayer(playerAttack);
+      cout<<"\nCards left "<<36-cardCount<<endl;
+    }while(1);
   }
   return 0;
 }

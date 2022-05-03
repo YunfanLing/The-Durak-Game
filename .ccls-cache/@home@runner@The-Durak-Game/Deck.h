@@ -26,7 +26,7 @@ public:
   bool getLegalDefend(){return legalDefend;}
   bool getSuccessfulDefend(){return successfulDefend;}
   int getDefendPlayer(){return defendPlayer;}
-  void takeDiscardsDeckCards(vector<Hand>&Players);
+  void takeDiscardsDeckCards(vector<Hand>&Players,int playerDefend);
   void defend(int playerName,vector<Hand>& Players,Trump TheTrumpCard);
 
 
@@ -228,23 +228,23 @@ void Deck::setSuccessfulDefend()
     successfulDefend=0;
 }
 
-void Deck::takeDiscardsDeckCards(vector<Hand>&Players)
+void Deck::takeDiscardsDeckCards(vector<Hand>&Players,int playerDefend)
 {
   if(successfulDefend==0)
   {
     for(int i=0;i<AttackCards.mv.size();i++)
-      Players[getDefendPlayer()-1].mv.emplace_back(AttackCards.mv[i]);
+      Players[playerDefend-1].mv.emplace_back(AttackCards.mv[i]);
     for(int i=0;i<DefendCards.mv.size();i++)
-      Players[getDefendPlayer()-1].mv.emplace_back(DefendCards.mv[i]);
-    cout<<"Fail to defend "<<"Player"<<getDefendPlayer()<<" take all the cards on the deck\n";
-    Players[getDefendPlayer()-1].output();
+      Players[playerDefend-1].mv.emplace_back(DefendCards.mv[i]);
+    cout<<"Fail to defend "<<"Player"<<playerDefend<<" take all the cards on the deck\n";
+    Players[playerDefend-1].output();
     DeckCards.mv.clear();
     AttackCards.mv.clear();
     DefendCards.mv.clear();
   }
   else
   {
-    cout<<"Player"<< getDefendPlayer()<<" successfully defend the attack\n";
+    cout<<"Player"<< playerDefend<<" successfully defend the attack\n";
     cout<<"Cards on the deck discard\n";
     DeckCards.mv.clear();
     AttackCards.mv.clear();
