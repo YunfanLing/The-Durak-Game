@@ -4,7 +4,7 @@ class Attacker
 {
 public:
   void setAttackerPlayer(Deck OnDeck,int playerAttack,vector<Hand>Players);
-  int getAttackerPlayer(){cout<<"Player"<<attackerPlayer<<" attack\n";return attackerPlayer;}
+  int getAttackerPlayer(){cout<<"Player"<<attackerPlayer<<" abcttack\n";return attackerPlayer;}
 private:
   int attackerPlayer;
 };
@@ -12,17 +12,18 @@ private:
 void Attacker::setAttackerPlayer(Deck OnDeck,int playerAttack,vector<Hand>Players)
 {
   if(OnDeck.getSuccessfulDefend())
-    attackerPlayer=OnDeck.getDefendPlayer();
+  {
+    if(playerAttack==1)
+      attackerPlayer=2;
+    else
+      attackerPlayer=1;
+  }
   else
   {
-    if(Players.size()!=2)
-      attackerPlayer=(playerAttack+2)%(Players.size());
+    if(playerAttack==1)
+      attackerPlayer=1;
     else
-    {
-      if(OnDeck.getDefendPlayer()==2)
-        attackerPlayer=1;
-      else
-        attackerPlayer=2;
-    }
-  }  
+      attackerPlayer=2;
+  }
+
 }

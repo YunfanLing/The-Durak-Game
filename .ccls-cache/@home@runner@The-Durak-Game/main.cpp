@@ -138,7 +138,7 @@ int main()
         GameOver.judgeEnd(Players);
       }
       OnDeck.setSuccessfulDefend();
-    }while(Computer.getTake()!=1&&OnDeck.getTake()!=0);
+    }while(Computer.getTake()!=1&&OnDeck.getTake()!=1);
     OnDeck.takeDiscardsDeckCards(Players,playerDefend);
     Draw.draw(Players,cardCount,playerAttack,AfterShuffle);
     Attack.setAttackerPlayer(OnDeck,playerAttack,Players);
@@ -179,7 +179,7 @@ int main()
           GameOver.judgeEnd(Players);
         }
         OnDeck.setSuccessfulDefend();
-      }while(Computer.getTake()!=1&&OnDeck.getTake()!=0);
+      }while(Computer.getTake()!=1&&OnDeck.getTake()!=1);
       OnDeck.takeDiscardsDeckCards(Players,playerDefend);
       Draw.draw(Players,cardCount,playerAttack,AfterShuffle);
       Attack.setAttackerPlayer(OnDeck,playerAttack,Players);
