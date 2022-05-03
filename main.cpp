@@ -108,7 +108,7 @@ int main()
   else
   {
     int playerDefend=Defender.defenderPlayer(playerAttack);
-
+    
     do 
     {
       if(playerAttack==1)
@@ -132,7 +132,7 @@ int main()
       else
       {
         cout<<"==Computer defend==\n";
-
+        Computer.defend(playerDefend,Players,TrumpCard,OnDeck);
         GameOver.judgeEnd(Players);
       }
       OnDeck.setSuccessfulDefend();

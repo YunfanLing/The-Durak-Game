@@ -16,7 +16,7 @@ public:
   void attack(int playerName,vector<Hand>& Players);
 
   //Defend 
-  void setDefendCards(vector<Hand>Players,int defendNumber);
+  void setDefendCards(int defendPlayer,vector<Hand>Players,int defendNumber);
   void setTake(){cout<<"Take?\n";cin>>take;}
   void setLegalDefend(vector<Hand>Players,int defendNumber,Trump TheTrumpCard);
   void setSuccessfulDefend();
@@ -133,14 +133,14 @@ void Deck::setDefendPlayer(int playerName,vector<Hand>Players)
     defendPlayer=playerName+1;
 }
 
-void Deck::setDefendCards(vector<Hand>Players,int defendNumber)
+void Deck::setDefendCards(int defendPlayer,vector<Hand>Players,int defendNumber)
 {
-  DefendCards.mv.emplace_back(Players[getDefendPlayer()-1].mv[defendNumber]);
+  DefendCards.mv.emplace_back(Players[defendPlayer-1].mv[defendNumber]);
 }
 
 void Deck::setLegalDefend(vector<Hand>Players,int defendNumber,Trump TheTrumpCard)
 {
-  setDefendCards(Players,defendNumber);
+  setDefendCards(defendPlayer,Players,defendNumber);
   if(defendNumber>=Players[getDefendPlayer()-1].mv.size()||defendNumber<0)
     legalDefend=0;
   else
