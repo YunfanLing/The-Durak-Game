@@ -93,8 +93,18 @@ void Deck::attack(int playerName,vector<Hand>& Players)
     {
       do
       {
-        cout<<"Enter the number of card in hand to attack\n";
-        cin>>attackNumber;
+        bool legal=1;
+        do
+        {
+          legal=1;
+          cout<<"Enter the number of card in hand to attack\n";
+          cin>>attackNumber;
+          if(attackNumber>=Players[playerName-1].mv.size())
+          {
+            legal=0;
+            cout<<"Illegal please enter anothe number\n";
+          }
+        }while(legal==0);
         setLegalAttack(playerName,Players,attackNumber);
         if(getLegalAttack()==1)
         {

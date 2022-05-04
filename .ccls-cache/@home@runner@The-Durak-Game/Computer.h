@@ -171,18 +171,18 @@ void Computer::setTake(Deck OnDeck)
     {
       int sum=0;
       for(int i=0;i<cardsCanDefend.size();i++)
-    {
-      if(cardsCanDefend[i]==1)
-        sum++;
-    }
-    if(sum==0)
-    {  
-      take=1;
-    }
-    else
-    { 
-      take=0;
-    }
+      {
+        if(cardsCanDefend[i]==1)
+          sum++;
+      }
+      if(sum==0)
+      {  
+        take=1;
+      }
+      else
+      { 
+        take=0;
+      }
     }
   }
 }
