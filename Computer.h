@@ -17,7 +17,7 @@ public:
 
   //Defend
   void setCardsCanDefend(int defendToWhichCards,vector<Hand>Players,int playerDefend,Deck OnDeck,Trump TrumpCard);
-  void setTake();
+  void setTake(Deck OnDeck);
   void setDefendCard();
   vector<bool> getCardsCanDefend(){return cardsCanDefend;}
   bool getTake(){return take;}
@@ -159,18 +159,32 @@ void Computer::setCardsCanDefend(int defendToWhichCards,vector<Hand>Players,int 
   }
 }
 
-void Computer::setTake()
+void Computer::setTake(Deck OnDeck)
 {
-  int sum=0;
-  for(int i=0;i<cardsCanDefend.size();i++)
-  {
-    if(cardsCanDefend[i]==1)
-      sum++;
+  if(OnDeck.getBat()==1)
+  {  
+    if(OnDeck.getAttackCards().mv.size()==OnDeck.getDefendCards().mv.size())
+    { 
+      take=1;
+    }
+    else
+    {
+      int sum=0;
+      for(int i=0;i<cardsCanDefend.size();i++)
+      {
+        if(cardsCanDefend[i]==1)
+          sum++;
+      }
+      if(sum==0)
+      {  
+        take=1;
+      }
+      else
+      { 
+        take=0;
+      }
+    }
   }
-  if(sum==0)
-    take=1;
-  else
-    take=0;
 }
 
 void Computer::setDefendCard()
@@ -191,10 +205,11 @@ void Computer::setDefendCard()
 
 void Computer::defend(int playerDefend,vector<Hand>& Players,Trump TrumpCard,Deck& OnDeck)
 {
-  for(int i=0;i<OnDeck.getAttackCards().mv.size();i++)
+  setTake(OnDeck);
+  for(int i=OnDeck.getDefendCards().mv.size();i<OnDeck.getAttackCards().mv.size();i++)
   {
     setCardsCanDefend(i,Players,playerDefend,OnDeck,TrumpCard);
-    setTake();
+    setTake(OnDeck);
     if(take==1)
       break;
     setDefendCard();
