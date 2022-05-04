@@ -82,6 +82,8 @@ int main()
   {
     cout<<"\n\n------------------------------\n";
     cout<<"             Next Round            \n";
+    cout<<"---Trump Suit----\n";
+    cout<<TrumpCard.getSuit()<<endl;
     do 
     {
       OnDeck.attack(playerAttack,Players);
@@ -152,6 +154,8 @@ int main()
     {
       cout<<"\n\n------------------------------\n";
       cout<<"             Next Round            \n";
+      cout<<"---Trump Suit----\n";
+      cout<<TrumpCard.getSuit()<<endl;
       do 
       {
         if(playerAttack==1)
