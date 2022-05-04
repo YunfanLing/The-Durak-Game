@@ -142,8 +142,6 @@ int main()
     OnDeck.takeDiscardsDeckCards(Players,playerDefend);
     Draw.draw(Players,cardCount,playerAttack,AfterShuffle);
     Attack.setAttackerPlayer(OnDeck,playerAttack,Players);
-    playerAttack=Attack.getAttackerPlayer();
-    playerDefend=Defender.defenderPlayer(playerAttack);
     cout<<"\nCards left "<<36-cardCount<<endl;
     cout<<playerAttack<<endl;
     cout<<playerDefend<<endl;

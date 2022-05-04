@@ -4,7 +4,7 @@ class Attacker
 {
 public:
   void setAttackerPlayer(Deck OnDeck,int playerAttack,vector<Hand>Players);
-  int getAttackerPlayer(){cout<<"Player"<<attackerPlayer<<" abcttack\n";return attackerPlayer;}
+  int getAttackerPlayer(){cout<<"Player"<<attackerPlayer<<" attack\n";return attackerPlayer;}
 private:
   int attackerPlayer;
 };
