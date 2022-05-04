@@ -183,6 +183,13 @@ void Deck::defend(int playerName,vector<Hand>& Players,Trump TheTrumpCard)
     cout<<"\nDefend Player"<<getDefendPlayer()<<" defend\n";
     Players[getDefendPlayer()-1].output();
     setTake();
+    if(AttackCards.mv.size()==DefendCards.mv.size())
+    {
+      take=1;
+      break;
+    }
+    else
+    {
     if(getTake()==0)
     {
       do
@@ -204,8 +211,9 @@ void Deck::defend(int playerName,vector<Hand>& Players,Trump TheTrumpCard)
           setTake();
           if(getTake()==1)
             break;
-        }  
-      }while(getLegalDefend()==0);
+        }
+  
+      }while(getLegalDefend()==0);}
 
       //cout<<"\nAttack Cards\n";
       //AttackCards.output();
